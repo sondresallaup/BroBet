@@ -1,0 +1,67 @@
+<?php
+class GroupMembership{
+	private $group_id;
+	private $user_id;
+	private $date_created;
+
+	public function __construct($group_id, $user_id){
+		$this->group_id = $group_id;
+		$this->user_id = $user_id;
+		$constructQueryOfGroups = mysql_query("SELECT * FROM BroBet_group WHERE group_id = '$group_id'");
+		while($constructRowOfGroups = mysql_fetch_array($constructQueryOfGroups)){
+			$this->group_name = $constructRowOfGroups['group_name'];
+			$this->system = $constructRowOfGroups['system'];
+			$this->admin = $constructRowOfGroups['admin'];
+			$this->date_created = $constructRowOfGroups['date_created'];
+		}
+	}
+
+	public function constructWithName($group_name){
+		$this->group_name = $group_name;
+	}
+
+	public function getGroup_id(){
+		return $this->group_id;
+	}
+
+	public function getGroup_name(){
+		return $this->group_name;
+	}
+
+	public function getSystem(){
+		return $this->system;
+	}
+
+	public function getAdmin(){
+		return $this->admin;
+	}
+
+	public function getDate_created(){
+		return $this->date_created;
+	}
+
+	public function setGroup_name($group_name){
+		$this->group_name = $group_name;
+	}
+
+	public function setSystem($system){
+		$this->system = $system;
+	}
+
+	public function setAdmin($admin){
+		$this->admin = $admin;
+	}
+
+	public function setDate_created($date_created){
+		$this->date_created = $date_created;
+	}
+
+	public function saveInDB(){
+		mysql_query("INSERT INTO BroBet_group VALUES('','$this->group_name', '$this->system', '$this->admin', '$this->date_created')");
+	}
+}
+
+
+
+
+?>
