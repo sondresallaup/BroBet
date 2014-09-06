@@ -21,6 +21,17 @@ class Group{
 		$this->group_name = $group_name;
 	}
 
+	public function getGroupMembers(){
+		$members = array();
+		$membersQuery = mysql_query("SELECT user_id FROM BroBet_groupMembership WHERE group_id = '$this->group_id'");
+		$i = 0;
+		while($membersRow = mysql_fetch_assoc($membersQuery)){
+			$members[$i] = $membersRow['user_id'];
+			$i++;
+		}
+		return $members;
+	}
+
 	public function getGroup_id(){
 		return $this->group_id;
 	}

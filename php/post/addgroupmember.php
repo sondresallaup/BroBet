@@ -15,29 +15,31 @@ include '../entities/User.php';
 include '../entities/Friend.php';
 include '../entities/Group.php';
 
-if(isset($_POST['group_name'])){
+if(isset($_POST['username'])){
 
-$group_name = $_POST['group_name'];
-$system = $_POST['system'];
+$username = $_POST['username'];
+$group_id = $_POST['group_id'];
 
 $referer = "";
 
-$group = new Group();
-$group->constructWithName($group_name);
+$user = new User();
+$user->constructWithUsername($username);
 
-$group->setSystem($system);
-$group->setAdmin(getLoggedInUser()->getUser_id());
-$group->saveInDB();
-
-$referer = "success";
+if($user->isUserExcisting()){
+	$user_id = $user->getUser_id();
+	mysql_query("INSERT INTO BroBet_groupMembership VALUES('$group_id', '$user_id', '')");
+	$referer = $username;
+}
+else{
+	$referer = "false";
+}
 
 }
 else{
 	$referer = "input";
 }
-
 if(!$testing){
-	header('Location: ' . $_SERVER['HTTP_REFERER'] . '?creategroup=' . $referer);
+	header('Location: ' . $_SERVER['HTTP_REFERER'] . '&addgroupmember=' . $referer);
 }
 
 if($testing){

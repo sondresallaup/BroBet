@@ -1,11 +1,14 @@
 <?php
 include 'php/html/head.php';
-$TITLE = "BroBet - Log in";
+$TITLE = "BroBet";
 include 'php/html/titlebar.php';
 
 if(isLoggedIn()){
 	//MAINPAGE
-	echo 'Logget inn!';
+	
+	include 'php/html/settingslist.php';
+
+
 }
 
 else{

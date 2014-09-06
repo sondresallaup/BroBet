@@ -93,6 +93,10 @@ class User{
 		return $this->role;
 	}
 
+	public function isAdmin(){
+		return $this->role == "ADMIN";
+	}
+
 	public function setName($name){
 		$this->name = $name;
 	}
@@ -106,7 +110,7 @@ class User{
 	}
 
 	public function saveInDB(){
-		mysql_query("INSERT INTO BroBet_users VALUES('','$this->name', '$this->username', '$this->date_created', '$this->password', '$this->role')");
+		mysql_query("INSERT INTO BroBet_users VALUES('','$this->name', '$this->username', '$this->date_created', '$this->password', 'BASIC')");
 	}
 }
 

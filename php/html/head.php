@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$testing = false;
+$testing = true;
 
 if($testing){
   error_reporting(-1);
@@ -11,7 +11,14 @@ if($testing){
 include '../php/functions/phpmyadmin_connect.php';
 include 'php/entities/User.php';
 include 'php/entities/Group.php';
+include 'php/entities/Team.php';
+include 'php/entities/Match.php';
+include 'php/entities/System.php';
+include 'php/entities/Round.php';
+include 'php/entities/Bet.php';
 include 'php/functions/userfunctions.php';
+include 'php/functions/groupfunctions.php';
+include 'php/functions/systemfunctions.php';
 
 ?>
 <!DOCTYPE html>

@@ -24,16 +24,7 @@ function printGroupMsg(){
     <span class="input-label">Group name</span>
     <input type="text" name="group_name">
   </label>
-  <label class="item item-input item-select">
-    <div class="input-label">
-      System
-    </div>
-    <select name="system">
-      <option value="0">Premier League</option>
-      <option value="1" selected>Tippeligaen</option>
-      <option value="2">Editor's choices</option>
-    </select>
-  </label>
+  <?php createSystemSelectBox();?>
   <?php printGroupMsg(); ?>
   <input type="submit" class="button button-block button-positive" value="Create group">
 </div></form>
